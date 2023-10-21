@@ -18,5 +18,16 @@
                                             discount
                                         FROM StoreSample.Sales.OrderDetails
                                         WHERE CONCAT(orderid, productid) = @Id";
+
+        public const string GetByOrderId = @"SELECT 
+	                                            orderid,
+                                                productid,
+                                                unitprice,
+                                                qty,
+                                                discount
+                                            FROM StoreSample.Sales.OrderDetails
+                                            WHERE orderid = @OrderId";
+
+        public const string AddOrderDetail = @"INSERT INTO (orderid, productid, unitprice, qty, discount) VALUES (@OrderId, @ProductId, @UnitPrice, @Qty, @Discount)";
     }
 }

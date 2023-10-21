@@ -57,7 +57,6 @@
 
         public const string AddOrder = @"INSERT INTO Sales.Orders
                                          (
-                                             orderid,
                                              custid,
                                              empid,
                                              orderdate,

@@ -29,7 +29,7 @@ namespace SalesForecaster.Application.Features.Customer.Queries
 
                     if (!nextOrders.Any())
                     {
-                        var errorMessage = "No hay resultados para mostrar";
+                        var errorMessage = "No results found.";
                         var errorResult = ResultModel<NextOrderDTO>.GetResultModel(null, 0, errorMessage);
                         errorResult.Error = true;
 
@@ -38,9 +38,9 @@ namespace SalesForecaster.Application.Features.Customer.Queries
 
                     var data = _mapper.Map<List<NextOrderDTO>>(nextOrders);
 
-                    data.OrderBy(x => x.CompanyName).Paginate(request.Filters);
+                    var paginatedData = data.OrderBy(x => x.CompanyName).Paginate(request.Filters);
 
-                    var result = ResultModel<NextOrderDTO>.GetResultModel(data, nextOrders.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<NextOrderDTO>.GetResultModel(paginatedData.ToList(), nextOrders.Count, null, request.Filters.RecordsPerPage);
 
                     result.Total = nextOrders.Count;
 

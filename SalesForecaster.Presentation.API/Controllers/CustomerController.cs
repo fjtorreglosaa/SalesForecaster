@@ -8,6 +8,12 @@ namespace SalesForecaster.Presentation.API.Controllers
     [ApiController]
     public class CustomerController : MainController
     {
+        /// <summary>
+        /// Get all the Shippers
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="recordsPerPage"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get(int page = 1, int recordsPerPage = 10)
         {

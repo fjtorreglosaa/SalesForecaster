@@ -30,7 +30,7 @@ namespace SalesForecaster.Application.Features.Shipper.Queries.GetShippers
 
                     if (!shippers.Any())
                     {
-                        var errorMessage = "No hay resultados para mostrar";
+                        var errorMessage = "No results found.";
                         var errorResult = ResultModel<GetShipperDto>.GetResultModel(null, 0, errorMessage);
                         errorResult.Error = true;
                         return errorResult;
@@ -38,9 +38,9 @@ namespace SalesForecaster.Application.Features.Shipper.Queries.GetShippers
 
                     var data = _mapper.Map<List<GetShipperDto>>(shippers);
 
-                    data.OrderBy(x => x.CompanyName).Paginate(request.Filters);
+                    var paginatedData = data.OrderBy(x => x.CompanyName).Paginate(request.Filters);
 
-                    var result = ResultModel<GetShipperDto>.GetResultModel(data, shippers.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetShipperDto>.GetResultModel(paginatedData.ToList(), shippers.Count, null, request.Filters.RecordsPerPage);
 
                     result.Total = shippers.Count;
 

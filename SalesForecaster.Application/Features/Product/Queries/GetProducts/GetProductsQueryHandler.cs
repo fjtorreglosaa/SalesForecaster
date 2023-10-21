@@ -30,7 +30,7 @@ namespace SalesForecaster.Application.Features.Product.Queries.GetProducts
 
                     if (!products.Any())
                     {
-                        var errorMessage = "No hay resultados para mostrar";
+                        var errorMessage = "No results found.";
                         var errorResult = ResultModel<GetProductDto>.GetResultModel(null, 0, errorMessage);
                         errorResult.Error = true;
                         return errorResult;
@@ -38,9 +38,9 @@ namespace SalesForecaster.Application.Features.Product.Queries.GetProducts
 
                     var data = _mapper.Map<List<GetProductDto>>(products);
 
-                    data.OrderBy(x => x.ProductName).Paginate(request.Filters);
+                    var paginatedData = data.OrderBy(x => x.ProductName).Paginate(request.Filters);
 
-                    var result = ResultModel<GetProductDto>.GetResultModel(data, products.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetProductDto>.GetResultModel(paginatedData.ToList(), products.Count, null, request.Filters.RecordsPerPage);
 
                     result.Total = products.Count;
 

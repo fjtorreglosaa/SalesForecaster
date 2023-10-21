@@ -30,7 +30,7 @@ namespace SalesForecaster.Application.Features.Employee.Queries.GetEmployees
 
                     if (!employees.Any())
                     {
-                        var errorMessage = "No hay resultados para mostrar";
+                        var errorMessage = "No results found.";
                         var errorResult = ResultModel<GetEmployeeDto>.GetResultModel(null, 0, errorMessage);
                         errorResult.Error = true;
 
@@ -39,9 +39,9 @@ namespace SalesForecaster.Application.Features.Employee.Queries.GetEmployees
 
                     var data = _mapper.Map<List<GetEmployeeDto>>(employees);
 
-                    data.OrderBy(x => x.FullName).Paginate(request.Filters);
+                    var paginatedData = data.OrderBy(x => x.FullName).Paginate(request.Filters);
                     
-                    var result = ResultModel<GetEmployeeDto>.GetResultModel(data, employees.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetEmployeeDto>.GetResultModel(paginatedData.ToList(), employees.Count, null, request.Filters.RecordsPerPage);
                     
                     result.Total = employees.Count;
 

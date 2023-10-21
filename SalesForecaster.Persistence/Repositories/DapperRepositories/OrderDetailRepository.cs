@@ -17,6 +17,13 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
             _connection = connection;
         }
 
+        public async Task<int> AddAsync(OrderDetailModel entity)
+        {
+            var result = await _connection.ExecuteAsync(OrderDetailSQL.AddOrderDetail, entity);
+
+            return result;
+        }
+
         public async Task<IReadOnlyList<OrderDetailModel>> GetAllAsync()
         {
             var result = await _connection.QueryAsync<OrderDetailModel>(OrderDetailSQL.GetAll, transaction: _transaction);
@@ -24,9 +31,16 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
             return result.ToList();
         }
 
+        public async Task<IReadOnlyList<OrderDetailModel>> GetByOrderId(int orderId)
+        {
+            var result = await _connection.QueryAsync<OrderDetailModel>(OrderDetailSQL.GetByOrderId, new { OrderId = orderId }, transaction: _transaction);
+
+            return result.ToList();
+        }
+
         public async Task<OrderDetailModel> GetByIdAsync(int id)
         {
-            var result = await _connection.QuerySingleOrDefaultAsync<OrderDetailModel>(OrderDetailSQL.GetById, new { CategoryId = id }, transaction: _transaction);
+            var result = await _connection.QuerySingleOrDefaultAsync<OrderDetailModel>(OrderDetailSQL.GetById, new { Id = id }, transaction: _transaction);
 
             return result;
         }

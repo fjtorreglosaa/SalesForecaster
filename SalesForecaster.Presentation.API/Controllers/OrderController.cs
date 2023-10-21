@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SalesForecaster.Application.Features.Order.Commands.AddNewOrder;
 using SalesForecaster.Application.Features.Order.Queries.GetClientOrders;
 using SalesForecaster.Application.Utilities;
 
@@ -8,7 +9,14 @@ namespace SalesForecaster.Presentation.API.Controllers
     [ApiController]
     public class OrderController : MainController
     {
-        [HttpGet]
+        /// <summary>
+        /// Get all the orders filtered by a customer
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="page"></param>
+        /// <param name="recordsPerPage"></param>
+        /// <returns></returns>
+        [HttpGet("ByCustomerId")]
         public async Task<IActionResult> GetOrdersByCustomerId(int clientId, int page = 1, int recordsPerPage = 10)
         {
             var query = new GetClientOrdersQuery
@@ -22,6 +30,19 @@ namespace SalesForecaster.Presentation.API.Controllers
             };
 
             var result = await Mediator.Send(query);
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Add a new order and its details
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> AddNewOrder([FromBody] AddNewOrderCommand order)
+        {
+            var result = await Mediator.Send(order);
 
             return Ok(result);
         }

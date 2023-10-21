@@ -1,4 +1,6 @@
-﻿namespace SalesForecaster.Application.Utilities.Dtos.Order
+﻿using SalesForecaster.Application.Utilities.Dtos.OrderDetail;
+
+namespace SalesForecaster.Application.Utilities.Dtos.Order
 {
     public class GetOrderDto
     {
@@ -8,5 +10,6 @@
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
         public string ShipCity { get; set; }
+        public List<GetOrderDetailDto> OrderDetails { get; set; } = new List<GetOrderDetailDto>();
     }
 }

@@ -26,21 +26,31 @@ namespace SalesForecaster.Application.Features.Order.Queries.GetClientOrders
             {
                 try
                 {
-                    var clientOrders = await context.Repositories.OrderRepository.GetByCustomerIdAsync(request.ClientId);
+                    var validations = ModelValidations(request);
+
+                    if (validations != null) return validations;
+
+                    var clientOrders = await context.Repositories.OrderRepository.GetByCustomerIdAsync(request.ClientId.Value);
 
                     if (!clientOrders.Any())
                     {
-                        var errorMessage = "No hay resultados para mostrar";
+                        var errorMessage = "No results found";
                         var errorResult = ResultModel<GetOrderDto>.GetResultModel(null, 0, errorMessage);
                         errorResult.Error = true;
                         return errorResult;
                     }
 
+                    foreach (var order in clientOrders)
+                    {
+                        var orderDetails = await context.Repositories.OrderDetailRepository.GetByOrderId(order.OrderId);
+                        order.OrderDetails = orderDetails.ToList();
+                    }
+
                     var data = _mapper.Map<List<GetOrderDto>>(clientOrders);
 
-                    data.OrderBy(x => x.ShippedDate).Paginate(request.Filters);
+                    var paginatedData = data.OrderBy(x => x.ShippedDate).Paginate(request.Filters);
 
-                    var result = ResultModel<GetOrderDto>.GetResultModel(data, clientOrders.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetOrderDto>.GetResultModel(paginatedData.ToList(), clientOrders.Count, null, request.Filters.RecordsPerPage);
 
                     result.Total = clientOrders.Count;
 
@@ -58,6 +68,20 @@ namespace SalesForecaster.Application.Features.Order.Queries.GetClientOrders
                     return exceptionResult;
                 }
             }
+        }
+
+        private ResultModel<List<GetOrderDto>> ModelValidations(GetClientOrdersQuery request)
+        {
+            if (request.ClientId == null)
+            {
+                var errorMessage = "No results found";
+                var errorResult = ResultModel<GetOrderDto>.GetResultModel(null, 0, errorMessage);
+                errorResult.Error = true;
+
+                return errorResult;
+            }
+
+            return null;
         }
     }
 }

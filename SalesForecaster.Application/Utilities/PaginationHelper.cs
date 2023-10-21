@@ -4,9 +4,11 @@
     {
         public static IEnumerable<T> Paginate<T>(this IEnumerable<T> collection, PaginationDTO paginationDto)
         {
-            return collection
+            var result = collection
                 .Skip((paginationDto.Page - 1) * paginationDto.RecordsPerPage)
                 .Take(paginationDto.RecordsPerPage);
+
+            return result;
         }
     }
 }
