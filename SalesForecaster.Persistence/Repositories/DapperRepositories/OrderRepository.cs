@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using SalesForecaster.Domain.Models;
 using SalesForecaster.Persistence.Repositories.Contracts;
+using SalesForecaster.Persistence.Utilities;
 using SalesForecaster.Persistence.Utilities.SQLStrings;
 using System.Data;
 
@@ -40,9 +41,11 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
 
         public async Task<int> AddAsync(OrderModel entity)
         {
-            var result = await _connection.ExecuteAsync(OrderSQL.AddOrder, entity);
+            var data = await _connection.QueryAsync<Entity>(OrderSQL.AddOrder, entity, transaction: _transaction);
 
-            return result;
+            var result = data.FirstOrDefault();
+
+            return result.Id;
         }
     }
 }

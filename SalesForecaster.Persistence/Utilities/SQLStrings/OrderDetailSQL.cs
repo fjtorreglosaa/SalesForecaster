@@ -28,6 +28,6 @@
                                             FROM StoreSample.Sales.OrderDetails
                                             WHERE orderid = @OrderId";
 
-        public const string AddOrderDetail = @"INSERT INTO (orderid, productid, unitprice, qty, discount) VALUES (@OrderId, @ProductId, @UnitPrice, @Qty, @Discount)";
+        public const string AddOrderDetail = @"INSERT INTO Sales.OrderDetails (orderid, productid, unitprice, qty, discount) VALUES (@OrderId, @ProductId, @UnitPrice, @Qty, @Discount)";
     }
 }

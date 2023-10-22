@@ -5,6 +5,7 @@ namespace SalesForecaster.Application.Utilities.Dtos.Order
     public class AddOrderDto
     {
         public int? EmployeeId { get; set; }
+        public int? CustId { get; set; }
         public int? ShipperId { get; set; }
         public string? ShipName { get; set; }
         public string? ShipAddress { get; set; }

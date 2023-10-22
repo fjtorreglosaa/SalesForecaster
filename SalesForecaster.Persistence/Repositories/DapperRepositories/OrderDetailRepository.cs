@@ -19,7 +19,7 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
 
         public async Task<int> AddAsync(OrderDetailModel entity)
         {
-            var result = await _connection.ExecuteAsync(OrderDetailSQL.AddOrderDetail, entity);
+            var result = await _connection.ExecuteAsync(OrderDetailSQL.AddOrderDetail, entity, transaction: _transaction);
 
             return result;
         }

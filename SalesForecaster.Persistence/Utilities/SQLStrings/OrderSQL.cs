@@ -55,7 +55,8 @@
                                                FROM StoreSample.Sales.Orders
                                                WHERE custid = @CustId";
 
-        public const string AddOrder = @"INSERT INTO Sales.Orders
+        public const string AddOrder = @"DECLARE @InsertedRecords TABLE (id INT);
+                                         INSERT INTO Sales.Orders
                                          (
                                              custid,
                                              empid,
@@ -71,9 +72,9 @@
                                              shippostalcode,
                                              shipcountry
                                          )
+                                         OUTPUT INSERTED.orderid INTO @InsertedRecords
                                          VALUES
                                          (
-                                             @OrderId,
                                              @CustId,
                                              @EmpId,
                                              @OrderDate,
@@ -87,6 +88,8 @@
                                              @ShipRegion,
                                              @ShipPostalCode,
                                              @ShipCountry
-                                         )";
+                                         )
+
+                                         SELECT id FROM @InsertedRecords";
     }
 }
