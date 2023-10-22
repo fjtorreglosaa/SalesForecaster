@@ -6,6 +6,5 @@ namespace SalesForecaster.Application.Features.Employee.Queries.GetEmployees
 {
     public class GetEmployeesQuery : IRequest<ResultModel<List<GetEmployeeDto>>>
     {
-        public PaginationDTO Filters { get; set; }
     }
 }

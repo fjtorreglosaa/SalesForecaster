@@ -35,8 +35,9 @@ namespace SalesForecaster.Application.Features.Order.Queries.GetClientOrders
                     if (!clientOrders.Any())
                     {
                         var errorMessage = "No results found";
-                        var errorResult = ResultModel<GetOrderDto>.GetResultModel(null, 0, errorMessage);
-                        errorResult.Error = true;
+                        var emptyResult = new List<GetOrderDto>();
+                        var errorResult = ResultModel<GetOrderDto>.GetResultModel(emptyResult, 0, errorMessage);
+                        errorResult.Error = false;
                         return errorResult;
                     }
 
@@ -48,9 +49,7 @@ namespace SalesForecaster.Application.Features.Order.Queries.GetClientOrders
 
                     var data = _mapper.Map<List<GetOrderDto>>(clientOrders);
 
-                    var paginatedData = data.OrderBy(x => x.ShippedDate).Paginate(request.Filters);
-
-                    var result = ResultModel<GetOrderDto>.GetResultModel(paginatedData.ToList(), clientOrders.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetOrderDto>.GetResultModel(data, clientOrders.Count, null, request.Filters.RecordsPerPage);
 
                     result.Total = clientOrders.Count;
 
@@ -72,11 +71,12 @@ namespace SalesForecaster.Application.Features.Order.Queries.GetClientOrders
 
         private ResultModel<List<GetOrderDto>> ModelValidations(GetClientOrdersQuery request)
         {
-            if (request.ClientId == null)
+            if (request.ClientId == null || request.ClientId <= 0)
             {
                 var errorMessage = "No results found";
-                var errorResult = ResultModel<GetOrderDto>.GetResultModel(null, 0, errorMessage);
-                errorResult.Error = true;
+                var emptyResult = new List<GetOrderDto>();
+                var errorResult = ResultModel<GetOrderDto>.GetResultModel(emptyResult, 0, errorMessage);
+                errorResult.Error = false;
 
                 return errorResult;
             }

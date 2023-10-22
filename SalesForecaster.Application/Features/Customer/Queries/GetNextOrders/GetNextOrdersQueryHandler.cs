@@ -2,11 +2,12 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using SalesForecaster.Application.Utilities;
+using SalesForecaster.Application.Utilities.Dtos.Order;
 using SalesForecaster.Persistence.UnitOfWork.Contracts;
 
-namespace SalesForecaster.Application.Features.Customer.Queries
+namespace SalesForecaster.Application.Features.Customer.Queries.GetNextOrders
 {
-    public class GetNextOrdersQueryHandler : IRequestHandler<GetNextOrdersQuery, ResultModel<List<NextOrderDTO>>>
+    public class GetNextOrdersQueryHandler : IRequestHandler<GetNextOrdersQuery, ResultModel<List<NextOrderDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -19,7 +20,7 @@ namespace SalesForecaster.Application.Features.Customer.Queries
             _logger = logger;
         }
 
-        public async Task<ResultModel<List<NextOrderDTO>>> Handle(GetNextOrdersQuery request, CancellationToken cancellationToken)
+        public async Task<ResultModel<List<NextOrderDto>>> Handle(GetNextOrdersQuery request, CancellationToken cancellationToken)
         {
             using (var context = _unitOfWork.Create())
             {
@@ -29,18 +30,17 @@ namespace SalesForecaster.Application.Features.Customer.Queries
 
                     if (!nextOrders.Any())
                     {
+                        var emptyResult = new List<NextOrderDto>();
                         var errorMessage = "No results found.";
-                        var errorResult = ResultModel<NextOrderDTO>.GetResultModel(null, 0, errorMessage);
+                        var errorResult = ResultModel<NextOrderDto>.GetResultModel(emptyResult, 0, errorMessage);
                         errorResult.Error = true;
 
                         return errorResult;
                     }
 
-                    var data = _mapper.Map<List<NextOrderDTO>>(nextOrders);
+                    var data = _mapper.Map<List<NextOrderDto>>(nextOrders);
 
-                    var paginatedData = data.OrderBy(x => x.CompanyName).Paginate(request.Filters);
-
-                    var result = ResultModel<NextOrderDTO>.GetResultModel(paginatedData.ToList(), nextOrders.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<NextOrderDto>.GetResultModel(data.ToList(), nextOrders.Count, null);
 
                     result.Total = nextOrders.Count;
 
@@ -52,7 +52,7 @@ namespace SalesForecaster.Application.Features.Customer.Queries
 
                     _logger.LogError(exceptionMessage);
 
-                    var exceptionResult = ResultModel<NextOrderDTO>.GetResultModel(null, 0, exceptionMessage);
+                    var exceptionResult = ResultModel<NextOrderDto>.GetResultModel(null, 0, exceptionMessage);
                     exceptionResult.Error = true;
 
                     return exceptionResult;

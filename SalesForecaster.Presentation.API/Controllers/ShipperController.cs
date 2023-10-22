@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesForecaster.Application.Features.Shipper.Queries.GetShippers;
-using SalesForecaster.Application.Utilities;
 
 namespace SalesForecaster.Presentation.API.Controllers
 {
@@ -15,11 +14,9 @@ namespace SalesForecaster.Presentation.API.Controllers
         /// <param name="recordsPerPage"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Get(int page = 1, int recordsPerPage = 10)
+        public async Task<IActionResult> Get()
         {
-            var filters = new PaginationDTO { Page = page, RecordsPerPage = recordsPerPage };
-
-            var query = new GetShippersQuery { Filters = filters };
+            var query = new GetShippersQuery();
 
             var result = await Mediator.Send(query);
 

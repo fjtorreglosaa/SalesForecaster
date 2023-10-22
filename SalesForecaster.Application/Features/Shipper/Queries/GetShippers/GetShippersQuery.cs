@@ -6,6 +6,5 @@ namespace SalesForecaster.Application.Features.Shipper.Queries.GetShippers
 {
     public class GetShippersQuery : IRequest<ResultModel<List<GetShipperDto>>>
     {
-        public PaginationDTO Filters { get; set; }
     }
 }

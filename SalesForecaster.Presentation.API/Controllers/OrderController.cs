@@ -16,8 +16,8 @@ namespace SalesForecaster.Presentation.API.Controllers
         /// <param name="page"></param>
         /// <param name="recordsPerPage"></param>
         /// <returns></returns>
-        [HttpGet("ByCustomerId")]
-        public async Task<IActionResult> GetOrdersByCustomerId(int clientId, int page = 1, int recordsPerPage = 10)
+        [HttpGet("ByCustomer")]
+        public async Task<IActionResult> GetOrdersByCustomer(int clientId, int page = 1, int recordsPerPage = 10)
         {
             var query = new GetClientOrdersQuery
             { 

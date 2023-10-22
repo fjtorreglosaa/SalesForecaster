@@ -1,6 +1,6 @@
-﻿namespace SalesForecaster.Application.Utilities
+﻿namespace SalesForecaster.Application.Utilities.Dtos.Order
 {
-    public class NextOrderDTO
+    public class NextOrderDto
     {
         public string CompanyName { get; set; }
         public DateTime LatestOrderDate { get; set; }

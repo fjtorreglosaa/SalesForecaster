@@ -44,7 +44,7 @@ namespace SalesForecaster.Application.Utilities
                 .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.CompanyName))
                 .ReverseMap();
 
-            CreateMap<NextOrderModel, NextOrderDTO>().ReverseMap();
+            CreateMap<NextOrderModel, NextOrderDto>().ReverseMap();
         }
     }
 }

@@ -31,17 +31,16 @@ namespace SalesForecaster.Application.Features.Employee.Queries.GetEmployees
                     if (!employees.Any())
                     {
                         var errorMessage = "No results found.";
-                        var errorResult = ResultModel<GetEmployeeDto>.GetResultModel(null, 0, errorMessage);
+                        var emptyResult = new List<GetEmployeeDto>();
+                        var errorResult = ResultModel<GetEmployeeDto>.GetResultModel(emptyResult, 0, errorMessage);
                         errorResult.Error = true;
 
                         return errorResult;
                     }
 
                     var data = _mapper.Map<List<GetEmployeeDto>>(employees);
-
-                    var paginatedData = data.OrderBy(x => x.FullName).Paginate(request.Filters);
                     
-                    var result = ResultModel<GetEmployeeDto>.GetResultModel(paginatedData.ToList(), employees.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetEmployeeDto>.GetResultModel(data.ToList(), employees.Count, null);
                     
                     result.Total = employees.Count;
 

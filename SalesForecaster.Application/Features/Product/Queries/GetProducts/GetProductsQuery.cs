@@ -6,6 +6,5 @@ namespace SalesForecaster.Application.Features.Product.Queries.GetProducts
 {
     public class GetProductsQuery : IRequest<ResultModel<List<GetProductDto>>>
     {
-        public PaginationDTO Filters { get; set; }
     }
 }

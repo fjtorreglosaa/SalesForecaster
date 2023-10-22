@@ -31,16 +31,15 @@ namespace SalesForecaster.Application.Features.Product.Queries.GetProducts
                     if (!products.Any())
                     {
                         var errorMessage = "No results found.";
-                        var errorResult = ResultModel<GetProductDto>.GetResultModel(null, 0, errorMessage);
+                        var emptyResult = new List<GetProductDto>();
+                        var errorResult = ResultModel<GetProductDto>.GetResultModel(emptyResult, 0, errorMessage);
                         errorResult.Error = true;
                         return errorResult;
                     }
 
                     var data = _mapper.Map<List<GetProductDto>>(products);
 
-                    var paginatedData = data.OrderBy(x => x.ProductName).Paginate(request.Filters);
-
-                    var result = ResultModel<GetProductDto>.GetResultModel(paginatedData.ToList(), products.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetProductDto>.GetResultModel(data.ToList(), products.Count, null);
 
                     result.Total = products.Count;
 

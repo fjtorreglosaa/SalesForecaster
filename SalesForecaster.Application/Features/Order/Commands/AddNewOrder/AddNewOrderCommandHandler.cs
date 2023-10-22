@@ -41,7 +41,22 @@ namespace SalesForecaster.Application.Features.Order.Commands.AddNewOrder
                         return errorResult;
                     }
 
-                    var orderId = CreateOrder(request).Result;
+                    var newOrder = new OrderModel
+                    {
+                        EmpId = request.Order.EmployeeId.Value,
+                        CustId = request.Order.CustId.Value,
+                        ShipperId = request.Order.ShipperId.Value,
+                        ShipName = request.Order.ShipName,
+                        ShipAddress = request.Order.ShipAddress,
+                        ShipCountry = request.Order.ShipCountry,
+                        OrderDate = request.Order.OrderDate.Value,
+                        RequiredDate = request.Order.RequiredDate.Value,
+                        ShippedDate = request.Order.ShippedDate,
+                        Freight = request.Order.Freight.Value,
+                        ShipCity = request.Order.ShipCity
+                    };
+
+                    var orderId = await context.Repositories.OrderRepository.AddAsync(newOrder);
 
                     foreach (var orderDetail in request.Order.OrderDetails)
                     {
@@ -108,33 +123,6 @@ namespace SalesForecaster.Application.Features.Order.Commands.AddNewOrder
             }
 
             return errorMessages;
-        }
-
-        private async Task<int> CreateOrder(AddNewOrderCommand request)
-        {
-            using (var context = _unitOfWork.Create())
-            {
-                var newOrder = new OrderModel
-                {
-                    EmpId = request.Order.EmployeeId.Value,
-                    CustId = request.Order.CustId.Value,
-                    ShipperId = request.Order.ShipperId.Value,
-                    ShipName = request.Order.ShipName,
-                    ShipAddress = request.Order.ShipAddress,
-                    ShipCountry = request.Order.ShipCountry,
-                    OrderDate = request.Order.OrderDate.Value,
-                    RequiredDate = request.Order.RequiredDate.Value,
-                    ShippedDate = request.Order.ShippedDate,
-                    Freight = request.Order.Freight.Value,
-                    ShipCity = request.Order.ShipCity
-                };
-
-                var result = await context.Repositories.OrderRepository.AddAsync(newOrder);
-
-                context.Commit();
-
-                return result;
-            }
         }
     }
 }
