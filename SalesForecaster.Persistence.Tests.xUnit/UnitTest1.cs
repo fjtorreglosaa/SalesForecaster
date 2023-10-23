@@ -5,7 +5,7 @@ namespace SalesForecaster.Persistence.Tests.xUnit
         [Fact]
         public void Test1()
         {
-
+            // REVISAR EL PROYECTO DE PRUEBAS UNITARIAS SalesForecaster.Application.Tests.xUnit CARPETA Shipper
         }
     }
 }
