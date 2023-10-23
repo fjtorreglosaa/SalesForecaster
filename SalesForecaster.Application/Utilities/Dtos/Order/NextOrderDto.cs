@@ -2,8 +2,9 @@
 {
     public class NextOrderDto
     {
-        public string CompanyName { get; set; }
-        public DateTime LatestOrderDate { get; set; }
-        public DateTime NextPredictedOrder { get; set; }
+        public int? custid { get; set; }
+        public string customername { get; set; }
+        public DateTime lastorderdate { get; set; }
+        public DateTime nextpredictedorder { get; set; }
     }
 }

@@ -13,12 +13,12 @@ namespace SalesForecaster.Application.Utilities
         public Mappings()
         {
             CreateMap<OrderModel, GetOrderDto>()
-                .ForMember(dest => dest.OrderId, opt => opt.MapFrom(src => src.OrderId))
-                .ForMember(dest => dest.RequiredDate, opt => opt.MapFrom(src => src.RequiredDate))
-                .ForMember(dest => dest.ShippedDate, opt => opt.MapFrom(src => src.ShippedDate))
-                .ForMember(dest => dest.ShipName, opt => opt.MapFrom(src => src.ShipName))
-                .ForMember(dest => dest.ShipAddress, opt => opt.MapFrom(src => src.ShipAddress))
-                .ForMember(dest => dest.ShipCity, opt => opt.MapFrom(src => src.ShipCity))
+                .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.OrderId))
+                .ForMember(dest => dest.requireddate, opt => opt.MapFrom(src => src.RequiredDate))
+                .ForMember(dest => dest.shippeddate, opt => opt.MapFrom(src => src.ShippedDate))
+                .ForMember(dest => dest.shipname, opt => opt.MapFrom(src => src.ShipName))
+                .ForMember(dest => dest.shipaddress, opt => opt.MapFrom(src => src.ShipAddress))
+                .ForMember(dest => dest.shipcity, opt => opt.MapFrom(src => src.ShipCity))
                 .ForMember(dest => dest.OrderDetails, opt => opt.MapFrom(src => src.OrderDetails))
                 .ReverseMap();
 
@@ -30,7 +30,7 @@ namespace SalesForecaster.Application.Utilities
                 .ReverseMap();
 
             CreateMap<EmployeeModel, GetEmployeeDto>()
-                .ForMember(dest => dest.EmpId, opt => opt.MapFrom(src => src.Empid))
+                .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.Empid))
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.Firstname} {src.Lastname}"))
                 .ReverseMap();
 
@@ -44,7 +44,12 @@ namespace SalesForecaster.Application.Utilities
                 .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.CompanyName))
                 .ReverseMap();
 
-            CreateMap<NextOrderModel, NextOrderDto>().ReverseMap();
+            CreateMap<NextOrderModel, NextOrderDto>()
+                .ForMember(dest => dest.custid, opt => opt.MapFrom(src => src.CustId))
+                .ForMember(dest => dest.customername, opt => opt.MapFrom(src => src.CompanyName))
+                .ForMember(dest => dest.lastorderdate, opt => opt.MapFrom(src => src.LatestOrderDate))
+                .ForMember(dest => dest.nextpredictedorder, opt => opt.MapFrom(src => src.NextPredictedOrder))
+                .ReverseMap();
         }
     }
 }

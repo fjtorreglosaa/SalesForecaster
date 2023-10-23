@@ -49,7 +49,7 @@ namespace SalesForecaster.Application.Features.Order.Queries.GetClientOrders
 
                     var data = _mapper.Map<List<GetOrderDto>>(clientOrders);
 
-                    var result = ResultModel<GetOrderDto>.GetResultModel(data, clientOrders.Count, null, request.Filters.RecordsPerPage);
+                    var result = ResultModel<GetOrderDto>.GetResultModel(data, clientOrders.Count, null);
 
                     result.Total = clientOrders.Count;
 

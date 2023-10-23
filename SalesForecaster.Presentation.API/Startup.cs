@@ -38,7 +38,7 @@ namespace SalesForecaster.Presentation.API
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyOrigin());
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthorization();
 

@@ -4,12 +4,12 @@ namespace SalesForecaster.Application.Utilities.Dtos.Order
 {
     public class GetOrderDto
     {
-        public int OrderId { get; set; }
-        public DateTime RequiredDate { get; set; }
-        public DateTime ShippedDate { get; set; }
-        public string ShipName { get; set; }
-        public string ShipAddress { get; set; }
-        public string ShipCity { get; set; }
+        public int id { get; set; }
+        public DateTime requireddate { get; set; }
+        public DateTime shippeddate { get; set; }
+        public string shipname { get; set; }
+        public string shipaddress { get; set; }
+        public string shipcity { get; set; }
         public List<GetOrderDetailDto> OrderDetails { get; set; } = new List<GetOrderDetailDto>();
     }
 }

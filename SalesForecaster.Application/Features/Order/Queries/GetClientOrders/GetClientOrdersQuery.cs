@@ -7,6 +7,5 @@ namespace SalesForecaster.Application.Features.Order.Queries.GetClientOrders
     public class GetClientOrdersQuery : IRequest<ResultModel<List<GetOrderDto>>>
     {
         public int? ClientId { get; set; }
-        public PaginationDTO Filters { get; set; }
     }
 }

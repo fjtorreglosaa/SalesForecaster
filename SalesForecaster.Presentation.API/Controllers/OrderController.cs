@@ -17,17 +17,9 @@ namespace SalesForecaster.Presentation.API.Controllers
         /// <param name="recordsPerPage"></param>
         /// <returns></returns>
         [HttpGet("ByCustomer")]
-        public async Task<IActionResult> GetOrdersByCustomer(int clientId, int page = 1, int recordsPerPage = 10)
+        public async Task<IActionResult> GetOrdersByCustomer(int clientId)
         {
-            var query = new GetClientOrdersQuery
-            { 
-                ClientId = clientId,
-                Filters = new PaginationDTO 
-                { 
-                    Page = page, 
-                    RecordsPerPage = recordsPerPage 
-                } 
-            };
+            var query = new GetClientOrdersQuery{ ClientId = clientId };
 
             var result = await Mediator.Send(query);
 
