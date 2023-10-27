@@ -1,6 +1,9 @@
-﻿using SalesForecaster.Application.Utilities;
+﻿using MediatR;
+using SalesForecaster.Application.Behaviours;
+using SalesForecaster.Application.Utilities;
 using SalesForecaster.Persistence.UnitOfWork.Contracts;
 using SalesForecaster.Persistence.UnitOfWork.DapperUnitOfWork;
+using SalesForecaster.Presentation.API.Middlewares;
 using SalesForecaster.Presentation.API.Services;
 
 namespace SalesForecaster.Presentation.API
@@ -22,6 +25,8 @@ namespace SalesForecaster.Presentation.API
             services.AddEndpointsApiExplorer();
             services.ConfigureApiDocumentation();
             services.ConfigureMediator();
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddAutoMapper(typeof(Mappings));
         }
 
@@ -39,6 +44,8 @@ namespace SalesForecaster.Presentation.API
             app.UseRouting();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseAuthorization();
 

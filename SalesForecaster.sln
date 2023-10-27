@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Presentation.API", "SalesForecaster.Presentation.API\SalesForecaster.Presentation.API.csproj", "{22FA8B2B-8BF9-411D-B9E4-F05450861F5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Presentation.API", "SalesForecaster.Presentation.API\SalesForecaster.Presentation.API.csproj", "{22FA8B2B-8BF9-411D-B9E4-F05450861F5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Domain", "SalesForecaster.Domain\SalesForecaster.Domain.csproj", "{DBECC37D-D20C-45A6-9C04-FEB5AA1634B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Domain", "SalesForecaster.Domain\SalesForecaster.Domain.csproj", "{DBECC37D-D20C-45A6-9C04-FEB5AA1634B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Application", "SalesForecaster.Application\SalesForecaster.Application.csproj", "{E68CC03B-BABC-44A8-AAF8-2F54D1CE2B53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Application", "SalesForecaster.Application\SalesForecaster.Application.csproj", "{E68CC03B-BABC-44A8-AAF8-2F54D1CE2B53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Persistence", "SalesForecaster.Persistence\SalesForecaster.Persistence.csproj", "{3CC90DE7-B3DA-4778-95DD-963E7B215520}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Persistence", "SalesForecaster.Persistence\SalesForecaster.Persistence.csproj", "{3CC90DE7-B3DA-4778-95DD-963E7B215520}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Application.Tests.xUnit", "SalesForecaster.Application.Tests.xUnit\SalesForecaster.Application.Tests.xUnit.csproj", "{EEAE0CA3-9820-4A28-B167-4DC60952EB2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Application.Tests.xUnit", "SalesForecaster.Application.Tests.xUnit\SalesForecaster.Application.Tests.xUnit.csproj", "{EEAE0CA3-9820-4A28-B167-4DC60952EB2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Persistence.Tests.xUnit", "SalesForecaster.Persistence.Tests.xUnit\SalesForecaster.Persistence.Tests.xUnit.csproj", "{B1FDD4EB-C6D4-428F-83DB-40567A046FCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Persistence.Tests.xUnit", "SalesForecaster.Persistence.Tests.xUnit\SalesForecaster.Persistence.Tests.xUnit.csproj", "{B1FDD4EB-C6D4-428F-83DB-40567A046FCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Presentation.API.Tests.xUnit", "SalesForecaster.Presentation.API.Tests.xUnit\SalesForecaster.Presentation.API.Tests.xUnit.csproj", "{3D2CAC08-D42C-4285-A23A-051F36B5E67F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Presentation.API.Tests.xUnit", "SalesForecaster.Presentation.API.Tests.xUnit\SalesForecaster.Presentation.API.Tests.xUnit.csproj", "{3D2CAC08-D42C-4285-A23A-051F36B5E67F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{4F449ED0-9275-4D8E-944C-093B69E0109C}"
 EndProject
@@ -24,6 +24,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{98813F73-F2A3-4021-9EDA-33FAE5F8B4CE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{1DD71CBD-96B4-432B-8196-E04F2241E2E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesForecaster.Infrastructure", "SalesForecaster.Infrastructure\SalesForecaster.Infrastructure.csproj", "{C8346C84-0542-405A-82CB-8E0A2EEBD067}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D8A8E5D2-5CDB-4B00-B5D3-790351DF21CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesForecaster.Infrastructure.Tests.xUnit", "SalesForecaster.Infrastructure.Tests.xUnit\SalesForecaster.Infrastructure.Tests.xUnit.csproj", "{2EDA7756-9A23-4CF0-919C-6BAD6CD1DB9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +65,14 @@ Global
 		{3D2CAC08-D42C-4285-A23A-051F36B5E67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D2CAC08-D42C-4285-A23A-051F36B5E67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D2CAC08-D42C-4285-A23A-051F36B5E67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8346C84-0542-405A-82CB-8E0A2EEBD067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8346C84-0542-405A-82CB-8E0A2EEBD067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8346C84-0542-405A-82CB-8E0A2EEBD067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8346C84-0542-405A-82CB-8E0A2EEBD067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDA7756-9A23-4CF0-919C-6BAD6CD1DB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDA7756-9A23-4CF0-919C-6BAD6CD1DB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDA7756-9A23-4CF0-919C-6BAD6CD1DB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDA7756-9A23-4CF0-919C-6BAD6CD1DB9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +85,8 @@ Global
 		{EEAE0CA3-9820-4A28-B167-4DC60952EB2D} = {4F449ED0-9275-4D8E-944C-093B69E0109C}
 		{B1FDD4EB-C6D4-428F-83DB-40567A046FCD} = {98813F73-F2A3-4021-9EDA-33FAE5F8B4CE}
 		{3D2CAC08-D42C-4285-A23A-051F36B5E67F} = {1DD71CBD-96B4-432B-8196-E04F2241E2E8}
+		{C8346C84-0542-405A-82CB-8E0A2EEBD067} = {D8A8E5D2-5CDB-4B00-B5D3-790351DF21CD}
+		{2EDA7756-9A23-4CF0-919C-6BAD6CD1DB9A} = {D8A8E5D2-5CDB-4B00-B5D3-790351DF21CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D58FEFEA-93DB-42D9-9E8A-A32FEE4C1EEF}
