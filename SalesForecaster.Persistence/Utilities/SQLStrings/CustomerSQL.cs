@@ -30,5 +30,7 @@
                                                             INNER JOIN Sales.Customers c ON o.custid = c.custid
                                                             GROUP BY c.companyname, c.custid
                                                         ) AS Subquery";
+
+        public const string GetCustomersFiltered = "SELECT custid, contactname FROM StoreSample.Sales.Customers WHERE contactname LIKE @Parameter";
     }
 }

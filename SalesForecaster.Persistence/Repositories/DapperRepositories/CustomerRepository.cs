@@ -17,6 +17,15 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
             _connection = connection;
         }
 
+        public async Task<IReadOnlyList<CustomerModel>> GetCustomersFiltered(string parameter)
+        {
+            var query = "SELECT custid, contactname FROM StoreSample.Sales.Customers WHERE contactname LIKE " + $"'%{parameter}%'";
+
+            var result = await _connection.QueryAsync<CustomerModel>(query, transaction: _transaction);
+
+            return result.ToList();
+        }
+
         public async Task<IReadOnlyList<CustomerModel>> GetAllAsync()
         {
             var result = await _connection.QueryAsync<CustomerModel>(CustomerSQL.GetAll, transaction: _transaction);

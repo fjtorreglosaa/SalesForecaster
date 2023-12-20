@@ -4,7 +4,7 @@
     {
         public int CustId { get; set; }
         public int CompanyName { get; set; }
-        public int ContactName { get; set; }
+        public string ContactName { get; set; }
         public int ContactTitle { get; set; }
         public int Address { get; set; }
         public string City { get; set; }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SalesForecaster.Application.Features.Customer.Queries.GetCustomersByFilter;
 using SalesForecaster.Application.Features.Customer.Queries.GetNextOrders;
+using SalesForecaster.Application.Features.Order.Queries.GetClientOrders;
 
 namespace SalesForecaster.Presentation.API.Controllers
 {
@@ -17,6 +19,21 @@ namespace SalesForecaster.Presentation.API.Controllers
         public async Task<IActionResult> Get()
         {
             var query = new GetNextOrdersQuery();
+
+            var result = await Mediator.Send(query);
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        [HttpGet("GetCustomersFiltered")]
+        public async Task<IActionResult> GetCustomersByFilter([FromQuery] string parameter)
+        {
+            var query = new GetCustomersByFilterQuery { Filter = parameter };
 
             var result = await Mediator.Send(query);
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SalesForecaster.Application.Utilities.Dtos.Customer;
 using SalesForecaster.Application.Utilities.Dtos.Employee;
 using SalesForecaster.Application.Utilities.Dtos.Order;
 using SalesForecaster.Application.Utilities.Dtos.OrderDetail;
@@ -49,6 +50,11 @@ namespace SalesForecaster.Application.Utilities
                 .ForMember(dest => dest.customername, opt => opt.MapFrom(src => src.CompanyName))
                 .ForMember(dest => dest.lastorderdate, opt => opt.MapFrom(src => src.LatestOrderDate))
                 .ForMember(dest => dest.nextpredictedorder, opt => opt.MapFrom(src => src.NextPredictedOrder))
+                .ReverseMap();
+
+            CreateMap<GetCustomerDto, CustomerModel>()
+                .ForMember(dest => dest.CustId, opt => opt.MapFrom(src => src.Identifier))
+                .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.Name))
                 .ReverseMap();
         }
     }
