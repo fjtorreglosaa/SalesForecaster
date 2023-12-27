@@ -50,6 +50,12 @@ namespace SalesForecaster.Application.Utilities
                 .ForMember(dest => dest.lastorderdate, opt => opt.MapFrom(src => src.LatestOrderDate))
                 .ForMember(dest => dest.nextpredictedorder, opt => opt.MapFrom(src => src.NextPredictedOrder))
                 .ReverseMap();
+
+
+            CreateMap<EmployeeModel, GetEmployeeDto> ()
+                .ForMember(dest => dest.EmployeeId, opt => opt.MapFrom(src => src.Empid))
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Firstname))
+                .ReverseMap();
         }
     }
 }

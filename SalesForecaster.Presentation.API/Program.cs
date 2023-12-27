@@ -1,4 +1,4 @@
-using SalesForecaster.Presentation.API;
+namespace SalesForecaster.Presentation.API;
 
 public class Program
 {

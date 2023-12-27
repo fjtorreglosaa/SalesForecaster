@@ -3,7 +3,6 @@ using SalesForecaster.Domain.Models;
 using SalesForecaster.Persistence.Repositories.Contracts;
 using SalesForecaster.Persistence.Utilities.SQLStrings;
 using System.Data;
-using System.Transactions;
 using static Dapper.SqlMapper;
 
 namespace SalesForecaster.Persistence.Repositories.DapperRepositories
@@ -19,7 +18,20 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
             _connection = connection;
         }
 
-        public async Task<IReadOnlyList<EmployeeModel>> GetAllAsync()
+        public async Task<IReadOnlyList<EmployeeModel>> GetEmployeeFiltered(string? parameter)
+        {
+            var result = await _connection.QueryAsync<EmployeeModel>(EmployeeSQL.GetEmployeeFiltered, new { Filter = parameter }, transaction: _transaction);
+
+            return result.ToList();
+
+
+            /* var query = "SELECT firstname, lastname, address, city, phone FROM StoreSample.HR.Employees WHERE firstname LIKE " +$"'%{parameter}%'";
+            
+            var result = await _connection.QueryAsync<EmployeeModel>(query, transaction: _transaction);
+
+            return result.ToList(); */
+        }
+            public async Task<IReadOnlyList<EmployeeModel>> GetAllAsync()
         {
             var result = await _connection.QueryAsync<EmployeeModel>(EmployeeSQL.GetAll, transaction: _transaction);
 
@@ -32,5 +44,6 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
 
             return result;
         }
+
     }
 }

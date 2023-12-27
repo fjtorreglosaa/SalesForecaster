@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SalesForecaster.Application.Features.Employee.Queries.GetEmployeedFiltered;
 using SalesForecaster.Application.Features.Employee.Queries.GetEmployees;
 
 namespace SalesForecaster.Presentation.API.Controllers
@@ -22,5 +23,20 @@ namespace SalesForecaster.Presentation.API.Controllers
 
             return Ok(result);
         }
+        /// <summary>
+        /// Get Employees Filtered
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        [HttpGet("GetEmployeeByFiltered")]
+        public async Task<IActionResult> GetEmployeeByFiltered([FromQuery] string? parameter)
+        {
+            var query = new GetEmployeeByFilteredQuery { Filter = parameter};
+            
+            var result = await Mediator.Send(query);
+
+            return Ok(result);
+        }
+
     }
 }
