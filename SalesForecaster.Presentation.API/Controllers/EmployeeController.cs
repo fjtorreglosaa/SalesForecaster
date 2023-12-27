@@ -31,7 +31,7 @@ namespace SalesForecaster.Presentation.API.Controllers
         [HttpGet("GetEmployeeByFiltered")]
         public async Task<IActionResult> GetEmployeeByFiltered([FromQuery] string? parameter)
         {
-            var query = new GetEmployeeByFilteredQuery { Filter = parameter};
+            var query = new GetEmployeeByFilteredQuery { Filter = parameter };
             
             var result = await Mediator.Send(query);
 

@@ -8,14 +8,13 @@ using SalesForecaster.Persistence.UnitOfWork.Contracts;
 
 namespace SalesForecaster.Application.Features.Employee.Queries.GetEmployeedByFiltered
 {
-    public class
-        GetEmployeeByFilteredQueryHandler : IRequestHandler<GetEmployeeByFilteredQuery,ResultModel<List<GetEmployeeDto>>>
+    public class GetEmployeeByFilteredQueryHandler : IRequestHandler<GetEmployeeByFilteredQuery, ResultModel<List<GetEmployeeDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ILogger _logger;
+        private readonly ILogger<GetEmployeeByFilteredQueryHandler> _logger;
 
-        public GetEmployeeByFilteredQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger logger)
+        public GetEmployeeByFilteredQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<GetEmployeeByFilteredQueryHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

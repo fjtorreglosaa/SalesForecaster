@@ -17,8 +17,6 @@ namespace SalesForecaster.Presentation.API.Services
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(GetEmployeesQueryHandler)));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(GetShippersQueryHandler)));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(GetEmployeeByFilteredQueryHandler)));
-
-
         }
     }
 }
