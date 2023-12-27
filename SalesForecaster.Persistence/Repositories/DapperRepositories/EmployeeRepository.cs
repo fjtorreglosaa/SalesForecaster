@@ -20,16 +20,11 @@ namespace SalesForecaster.Persistence.Repositories.DapperRepositories
 
         public async Task<IReadOnlyList<EmployeeModel>> GetEmployeeFiltered(string? parameter)
         {
-            var result = await _connection.QueryAsync<EmployeeModel>(EmployeeSQL.GetEmployeeFiltered, new { Filter = parameter }, transaction: _transaction);
-
-            return result.ToList();
-
-
-            /* var query = "SELECT firstname, lastname, address, city, phone FROM StoreSample.HR.Employees WHERE firstname LIKE " +$"'%{parameter}%'";
+            var query = "SELECT firstname, lastname, address, city, phone FROM StoreSample.HR.Employees WHERE firstname LIKE @Parameter";
             
-            var result = await _connection.QueryAsync<EmployeeModel>(query, transaction: _transaction);
+            var result = await _connection.QueryAsync<EmployeeModel>(query, new { Parameter = $"%{parameter}%" }, transaction: _transaction);
 
-            return result.ToList(); */
+            return result.ToList(); 
         }
             public async Task<IReadOnlyList<EmployeeModel>> GetAllAsync()
         {
